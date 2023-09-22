@@ -1,4 +1,14 @@
 document.getElementById('btn').addEventListener('click', function(){
+        addTask();
+});
+
+document.getElementById('input').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
+function addTask() {
     let input = document.getElementById('input').value;
     if(input === ""){
         alert("Please enter something");
@@ -42,4 +52,4 @@ document.getElementById('btn').addEventListener('click', function(){
 
     document.getElementById('input').value="";
     }
-});
+};
