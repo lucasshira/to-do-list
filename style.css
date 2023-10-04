@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -14,7 +15,8 @@ h1 {
 }
 
 .title {
-    margin: 20px;
+    margin: 30px auto;
+    max-width: 500px;
     padding: 10px;
     background-color: #04041c;
     box-shadow: 2px 5px 5px rgba(0,0,0,0.7);
@@ -25,7 +27,8 @@ h1 {
 }
 
 #container {
-    margin: 20px;
+    margin: 30px auto;
+    max-width: 500px;
     padding: 20px;
     background-color: #04041c;
     box-shadow: 2px 5px 5px rgba(0,0,0,0.7);
@@ -43,10 +46,12 @@ h1 {
     border-bottom: 1px solid #616091;
     border-left: 1px solid #616091;
     padding: 5px;
+    box-sizing: border-box;
 }
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 #btn {
@@ -64,12 +69,10 @@ ul {
 }
 
 @media screen and (max-width: 768px) {
-    div {
-        display: block;
-    }
-
+    .title,
     #container {
         margin: 12px;
         padding: 12px;
+        max-width: 90%;
     }
 }
