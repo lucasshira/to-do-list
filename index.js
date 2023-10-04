@@ -8,11 +8,20 @@ document.getElementById('input').addEventListener('keydown', function (event) {
     }
 });
 
+function formatDate(date) {
+    const options = { day: '2-digit', month: '2-digit' };
+    return date.toLocaleDateString(undefined, options);
+};
+
 function addTask() {
     let input = document.getElementById('input').value;
     if(input === ""){
         alert("Please enter something");
     } else {
+
+    const dateSpan = document.createElement('span');
+    const currentDate = new Date();
+    dateSpan.innerText = formatDate(currentDate);
 
     let elem = document.createElement('li');
     let btn1 = document.createElement('button');
@@ -24,7 +33,12 @@ function addTask() {
     let ul = document.querySelector('ul');
     ul.appendChild(elem);
 
-    elem.innerText = input;
+    elem.appendChild(dateSpan);
+
+    let taskText = document.createElement('span');
+    taskText.innerText = " - " + input;
+    elem.appendChild(taskText);
+
     elem.appendChild(btn1);
     elem.appendChild(btn2);
 
