@@ -28,6 +28,7 @@ function criarElementoTarefa(texto, data, concluida) {
     elem.appendChild(taskText);
 
     const btn1 = document.createElement('button');
+    btn1.setAttribute('title', 'Mark as completed');
     btn1.innerText = "Done";
     btn1.style.border = "none";
     btn1.style.marginLeft = "3%";
@@ -41,6 +42,7 @@ function criarElementoTarefa(texto, data, concluida) {
     });
 
     const btn2 = document.createElement('button');
+    btn2.setAttribute('title', 'Delete task');
     btn2.innerText = "Delete";
     btn2.style.border = "none";
     btn2.style.marginLeft = "3%";
