@@ -3,7 +3,6 @@ document.getElementById('btn').addEventListener('click', function () {
 });
 
 const limiteDeCaracteres = 30;
-let dataAdicionda = false;
 
 document.getElementById('input').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
