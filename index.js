@@ -2,6 +2,9 @@ document.getElementById('btn').addEventListener('click', function () {
     adicionarTarefa();
 });
 
+const limiteDeCaracteres = 30;
+let dataAdicionda = false;
+
 document.getElementById('input').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         adicionarTarefa();
@@ -19,25 +22,31 @@ function criarElementoTarefa(texto, data, concluida) {
     dateSpan.innerText = data;
 
     const taskText = document.createElement('span');
-    taskText.innerText = " - " + texto;
+    taskText.innerText = texto;
     if (concluida) {
         elem.style.textDecoration = "line-through";
     }
 
     elem.appendChild(dateSpan);
-    elem.appendChild(taskText);
+
+    const contentContainer = document.createElement('div');
+    contentContainer.style.display = 'flex';
+    contentContainer.style.justifyContent = 'space-between';
+    contentContainer.style.alignItems = 'center';
+
+    const buttonContainer = document.createElement('div');
 
     const btn1 = document.createElement('button');
     btn1.setAttribute('title', 'Mark as completed');
     btn1.innerText = "Done";
     btn1.style.border = "none";
-    btn1.style.marginLeft = "3%";
-    btn1.style.marginBottom = "8px";
     btn1.style.borderRadius = "3px";
     btn1.style.backgroundColor = "#b4b3d8";
-    btn1.style.padding = "2px";
+    btn1.style.padding = "3px";
+    btn1.style.margin = '5px';
+    btn1.style.cursor = 'pointer';
     btn1.addEventListener('click', function () {
-        elem.style.textDecoration = "line-through";
+        taskText.style.textDecoration = "line-through";
         salvarTarefas();
     });
 
@@ -45,18 +54,23 @@ function criarElementoTarefa(texto, data, concluida) {
     btn2.setAttribute('title', 'Delete task');
     btn2.innerText = "Delete";
     btn2.style.border = "none";
-    btn2.style.marginLeft = "3%";
-    btn2.style.marginBottom = "8px";
     btn2.style.borderRadius = "3px";
     btn2.style.backgroundColor = "#b4b3d8";
-    btn2.style.padding = "2px";
+    btn2.style.padding = "3px";
+    btn2.style.cursor = 'pointer';
     btn2.addEventListener('click', function () {
         elem.remove();
         salvarTarefas();
     });
 
-    elem.appendChild(btn1);
-    elem.appendChild(btn2);
+    buttonContainer.appendChild(btn1);
+    buttonContainer.appendChild(btn2);
+    
+    contentContainer.appendChild(taskText);
+    contentContainer.appendChild(buttonContainer);
+
+    elem.appendChild(dateSpan);
+    elem.appendChild(contentContainer);
 
     return elem;
 }
@@ -65,6 +79,8 @@ function adicionarTarefa() {
     let input = document.getElementById('input').value;
     if (input === "") {
         alert("Please enter something");
+    } else if (input.length > limiteDeCaracteres) {
+        alert("Input is too long. Please enter a shorter task.");
     } else {
         const currentDate = new Date();
         const date = formatDate(currentDate);
