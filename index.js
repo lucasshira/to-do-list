@@ -10,23 +10,17 @@ document.getElementById('input').addEventListener('keydown', function (event) {
     }
 });
 
-function formatDate(date) {
-    const options = { day: '2-digit', month: '2-digit' };
-    return date.toLocaleDateString(undefined, options);
-}
-
-function criarElementoTarefa(texto, data, concluida) {
+function criarElementoTarefa(texto, concluida) {
     const elem = document.createElement('li');
-    const dateSpan = document.createElement('span');
-    dateSpan.innerText = data;
 
     const taskText = document.createElement('span');
     taskText.innerText = texto;
+    
     if (concluida) {
-        elem.style.textDecoration = "line-through";
+        taskText.style.textDecoration = "line-through";
     }
 
-    elem.appendChild(dateSpan);
+    elem.appendChild(taskText);
 
     const contentContainer = document.createElement('div');
     contentContainer.style.display = 'flex';
@@ -68,7 +62,6 @@ function criarElementoTarefa(texto, data, concluida) {
     contentContainer.appendChild(taskText);
     contentContainer.appendChild(buttonContainer);
 
-    elem.appendChild(dateSpan);
     elem.appendChild(contentContainer);
 
     return elem;
@@ -81,9 +74,7 @@ function adicionarTarefa() {
     } else if (input.length > limiteDeCaracteres) {
         alert("Input is too long. Please enter a shorter task.");
     } else {
-        const currentDate = new Date();
-        const date = formatDate(currentDate);
-        const elem = criarElementoTarefa(input, date, false);
+        const elem = criarElementoTarefa(input, false);
 
         const ul = document.querySelector('ul');
         ul.appendChild(elem);
@@ -99,11 +90,9 @@ function salvarTarefas() {
     const listaTarefas = document.querySelectorAll('ul > li');
 
     listaTarefas.forEach((item) => {
-        const data = item.querySelector('span:first-child').innerText;
-        const texto = item.querySelector('span:nth-child(2)').innerText.slice(3);
-        const concluida = item.style.textDecoration === "line-through";
-
-        tarefas.push({ data, texto, concluida });
+        const texto = item.querySelector('span').innerText;
+        const concluida = item.querySelector('span').style.textDecoration === "line-through";
+        tarefas.push({ texto, concluida });
     });
 
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
@@ -115,7 +104,7 @@ function carregarTarefasSalvas() {
         const tarefas = JSON.parse(tarefasSalvas);
 
         tarefas.forEach((tarefa) => {
-            const elem = criarElementoTarefa(tarefa.texto, tarefa.data, tarefa.concluida);
+            const elem = criarElementoTarefa(tarefa.texto, tarefa.concluida);
             const ul = document.querySelector('ul');
             ul.appendChild(elem);
         });
