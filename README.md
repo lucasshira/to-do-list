@@ -8,7 +8,7 @@ Este é um projeto de lista de tarefas simples feito em JavaScript.
 
 2. Digite uma tarefa no campo de entrada de texto e pressione "Enter" para adicionar a tarefa na lista.
 
-3. Clique na caixa de seleção "Done" para marcar a tarefa como concluída.
+3. Clique no botão "Done" para marcar a tarefa como concluída.
 
 4. Clique no botão "Delete" ao lado de uma tarefa para removê-la.
 
@@ -20,7 +20,7 @@ Este é um projeto de lista de tarefas simples feito em JavaScript.
 
 ## Contribuições
 
-Contribuições são bem-vindas. Sinta-se à vontade para abrir problemas (issues) ou enviar solicitações de pull (pull requests). :D
+Contribuições são bem-vindas. Sinta-se à vontade para abrir problemas (issues) ou enviar solicitações de pull (pull requests).
 
 ## Licença
 
