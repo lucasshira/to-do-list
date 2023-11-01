@@ -43,6 +43,14 @@ function criarElementoTarefa(texto, concluida) {
         salvarTarefas();
     });
 
+    btn1.addEventListener('mouseover', function () {
+        btn1.style.backgroundColor = '#fb97ad';
+    });
+
+    btn1.addEventListener('mouseout', function () {
+        btn1.style.backgroundColor = "#b4b3d8";
+    });
+
     const btn2 = document.createElement('button');
     btn2.setAttribute('title', 'Delete task');
     btn2.innerText = "Delete";
@@ -54,6 +62,14 @@ function criarElementoTarefa(texto, concluida) {
     btn2.addEventListener('click', function () {
         elem.remove();
         salvarTarefas();
+    });
+
+    btn2.addEventListener('mouseover', function () {
+        btn2.style.backgroundColor = '#fb97ad';
+    });
+
+    btn2.addEventListener('mouseout', function () {
+        btn2.style.backgroundColor = "#b4b3d8";
     });
 
     buttonContainer.appendChild(btn1);
@@ -72,7 +88,7 @@ function adicionarTarefa() {
     if (input === "") {
         alert("Please enter something");
     } else if (input.length > limiteDeCaracteres) {
-        alert("Input is too long. Please enter a shorter task.");
+        alert("Please enter a shorter task.");
     } else {
         const elem = criarElementoTarefa(input, false);
 
